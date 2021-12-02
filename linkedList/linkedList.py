@@ -1,10 +1,10 @@
-class node(object):
+class Node(object):
     def __init__(self, data):
         self.data = data
         self.link = None
 
 
-class boxList(object):
+class BoxList(object):
     def __init__(self):
         self.head = None
         self.count = 0
