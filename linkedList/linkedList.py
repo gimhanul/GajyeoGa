@@ -41,6 +41,23 @@ class BoxList(object):
 
         self.count += 1
 
+    def delete(self, idx):
+        if self.head == None or idx < 0 or idx > self.count: 
+            return -1
+        elif idx == 0:
+            self.head = self.head.link
+        else:
+            temp = self.head
+            preNode = None
+
+            for i in range(0, idx):
+                preNode = temp
+                temp = temp.link
+
+            preNode.link = temp.link
+
+        self.count += 1
+
     def printAll(self):
         temp = self.head
 
