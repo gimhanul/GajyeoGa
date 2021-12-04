@@ -1,7 +1,17 @@
-fp = open('data.txt', 'r', encoding='UTF-8')
-data = fp.read()
-fp.close()
-print(data)
-
 def getBoxes():
-    return
+
+    boxes = []
+    with open('data.txt', 'r', encoding='UTF-8') as fp:
+        data = fp.readlines()
+
+    for one in data[1:]:
+        temp = dict()
+        one = one.split(',')
+        temp['name'] = one[0]
+        temp['studentNumber'] = one[1]
+        temp['recievedDate'] = one[2]
+
+        boxes.append(temp)
+        
+        
+    return boxes
