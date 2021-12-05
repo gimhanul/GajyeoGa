@@ -1,17 +1,18 @@
-def getBoxes():
+from DS import linkedList
 
-    boxes = []
+def dataToLinkedList():
+
+    boxes = linkedList.BoxList()
+
     with open('data.txt', 'r', encoding='UTF-8') as fp:
         data = fp.readlines()
 
     for one in data[1:]:
-        temp = dict()
         one = one.split(',')
-        temp['name'] = one[0]
-        temp['studentNumber'] = one[1]
-        temp['recievedDate'] = one[2]
-
+        temp = linkedList.Node(one[0], one[1], one[2])
         boxes.append(temp)
         
-        
-    return boxes
+    boxes.printAll()
+    #return boxes
+
+dataToLinkedList()

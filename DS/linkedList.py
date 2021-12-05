@@ -1,7 +1,11 @@
 class Node(object):
-    def __init__(self, data):
-        self.data = data
+    id = 0
+    def __init__(self, name, studentNumber, date):
+        self.name = name
+        self.studentNumber = studentNumber
+        self.date = date
         self.link = None
+        self.id += 1
 
 
 class BoxList(object):
@@ -62,7 +66,7 @@ class BoxList(object):
         temp = self.head
 
         while(temp != None):
-            print(temp.data)
+            print(temp.name)
             temp = temp.link
 
             if temp != None:
