@@ -48,19 +48,22 @@ class BoxList(object):
     def delete(self, id):
         if self.head == None or id < 0: 
             return -1
-        elif id == 0:
-            self.head = self.head.link
         else:
             temp = self.head
             preNode = None
 
-            while 1:   
-                if temp.id == (str)(id):
-                    break
-                preNode = temp
-                temp = temp.link
+            if temp.id == (str)(id):
+                self.head = self.head.link
+            else:
+                while 1:   
+                    if temp.id == (str)(id):
+                        break
+                    preNode = temp
+                    temp = temp.link
 
-            preNode.link = temp.link
+                preNode.link = temp.link
+                print(f'삭제: {temp.id}')
+                    
 
 
     def printAll(self):
