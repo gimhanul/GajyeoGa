@@ -54,8 +54,6 @@ def setBox(boxes, name, studentNumber):
     return
 
 def deleteBoxById(boxes, id):
-    
-    boxes.printAll()
     boxes.delete(id)
     linkedListToData(boxes)
 

@@ -54,7 +54,9 @@ class BoxList(object):
             temp = self.head
             preNode = None
 
-            while temp.id != id:
+            while 1:   
+                if temp.id == (str)(id):
+                    break
                 preNode = temp
                 temp = temp.link
 
