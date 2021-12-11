@@ -18,6 +18,7 @@
             <p>{{ box.studentNumber }}</p>
             <p>{{ box.date }}</p>
             <p>{{ box.time }}</p>
+            <p>{{ box.id }}</p>
             {% if search != '' %}
             <button onclick="javascript:deleteBox('{{ box.id }}')">삭제</button>
             {% endif %}
@@ -35,14 +36,18 @@
         var data = {
             'id' : id
         }
+        console.log(data)
         $.ajax({
             type: 'POST',
             url: "{{ url_for('main.index') }}",
             dataType: 'json',
             data: JSON.stringify(data),
+            error: function(request,status,error){
+                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
         })
 
-        window.location.reload()
+        //window.location.reload()
     }
 </script>
 </html>

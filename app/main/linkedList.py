@@ -1,13 +1,11 @@
 class Node(object):
-    id = 0
-    def __init__(self, name, studentNumber, date, time):
+    def __init__(self, name, studentNumber, date, time, id):
         self.name = name
         self.studentNumber = studentNumber
         self.date = date
         self.time = time
+        self.id = id
         self.link = None
-        self.id = Node.id+1
-        Node.id += 1
 
 
 class BoxList(object):
@@ -24,7 +22,7 @@ class BoxList(object):
                 temp = temp.link
 
             temp.link = node
-            self.count += 1
+        self.count += 1
 
     def insert(self, node, idx):
         if self.head == None: self.head = node
@@ -48,21 +46,20 @@ class BoxList(object):
         self.count += 1
 
     def delete(self, id):
-        if self.head == None or id < 0 or id > self.count: 
+        if self.head == None or id < 0: 
             return -1
         elif id == 0:
             self.head = self.head.link
         else:
             temp = self.head
             preNode = None
-            
+
             while temp.id != id:
                 preNode = temp
                 temp = temp.link
 
             preNode.link = temp.link
 
-            self.count -= 1
 
     def printAll(self):
         temp = self.head
@@ -74,7 +71,7 @@ class BoxList(object):
             if temp != None:
                 print(" -> ")
 
-
-
+    def getCount(self):
+        return self.count
 
 
