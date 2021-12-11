@@ -6,8 +6,13 @@ boxes = works.dataToLinkedList()
 
 @main.route('/')
 def index():
-    nowBoxes = works.getBoxes(boxes)
-    return render_template('test.html', boxes=nowBoxes) #최태영거완성되면수정
+    query = request.args.get('search', '')
+    if query == '':
+        that = works.getBoxes(boxes)
+    else:
+        that = works.findByStudentNumber(boxes, query)
+    
+    return render_template('test.html', boxes=that) #최태영거완성되면수정
 
 '''
 def register():

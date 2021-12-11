@@ -7,15 +7,17 @@
     <title>가져가!!!</title>
 </head>
 <body>
-    <ul>
-        {% for box in boxes %}
-        <li>
-            <p>{{ box.name }}</p>
-            <p>{{ box.studentNumber }}</p>
-            <p>{{ box.date }}</p>
-        </li>
-        {% endfor %}
-    </ul>
+    <form action="" method="post">
+        <ul>
+            {% for box in boxes %}
+            <li>
+                <p>{{ box.name }}</p>
+                <p>{{ box.studentNumber }}</p>
+                <p>{{ box.date }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </form>
 
 
 </body>

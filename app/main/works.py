@@ -25,3 +25,15 @@ def getBoxes(boxes):
 
     boxesList.reverse()
     return boxesList
+
+
+def findByStudentNumber(boxes, query):
+    boxesList = []
+    temp = boxes.head
+
+    while(temp != None):
+        if temp.studentNumber == query:
+            boxesList.append(temp)
+        temp = temp.link
+
+    return boxesList
