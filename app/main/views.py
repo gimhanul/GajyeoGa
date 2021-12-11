@@ -3,14 +3,17 @@ from . import works
 
 main = Blueprint('main', __name__, url_prefix='/')
 
-@main.route('/')
+@main.route('/', methods=['POST', 'GET'])
 def index():
-    deleteBox = request.get_json()
-    if deleteBox:
-        works.deleteBoxById(deleteBox['id'])
-
     boxes = works.dataToLinkedList()
     query = request.args.get('search', '')
+
+    
+    if request.method == 'POST':
+        data = request.get_json('id')
+        works.deleteBoxById(boxes, (int)(data['id']))
+
+
     if query == '':
         that = works.getBoxes(boxes)
         that.reverse()

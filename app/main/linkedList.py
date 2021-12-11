@@ -6,7 +6,8 @@ class Node(object):
         self.date = date
         self.time = time
         self.link = None
-        self.id += 1
+        self.id = Node.id+1
+        Node.id += 1
 
 
 class BoxList(object):
@@ -46,22 +47,22 @@ class BoxList(object):
 
         self.count += 1
 
-    def delete(self, idx):
-        if self.head == None or idx < 0 or idx > self.count: 
+    def delete(self, id):
+        if self.head == None or id < 0 or id > self.count: 
             return -1
-        elif idx == 0:
+        elif id == 0:
             self.head = self.head.link
         else:
             temp = self.head
             preNode = None
-
-            for i in range(0, idx):
+            
+            while temp.id != id:
                 preNode = temp
                 temp = temp.link
 
             preNode.link = temp.link
 
-        self.count += 1
+            self.count -= 1
 
     def printAll(self):
         temp = self.head

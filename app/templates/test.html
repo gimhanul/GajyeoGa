@@ -32,15 +32,16 @@
     }
 
     function deleteBox(id) {
-        data = {
+        var data = {
             'id' : id
         }
         $.ajax({
-            url: "{{ url_for('main.index') }}",
             type: 'POST',
+            url: "{{ url_for('main.index') }}",
             dataType: 'json',
-            data: data,
+            data: JSON.stringify(data),
         })
+
         window.location.reload()
     }
 </script>

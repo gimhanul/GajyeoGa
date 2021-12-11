@@ -18,7 +18,7 @@ def linkedListToData(boxes):
     boxes = getBoxes(boxes)
     with open('data.txt', 'w', encoding='UTF-8') as fp:
         for box in boxes:
-            data = f'{ box.name },{ box.studentNumber },{ box.date },{ box.time },\n'
+            data = f'{ box.name },{ box.studentNumber },{ box.date },{ box.time },{ box.id }\n'
             fp.write(data)
 
 def getBoxes(boxes):
