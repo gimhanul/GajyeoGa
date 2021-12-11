@@ -36,9 +36,8 @@
         var data = {
             'id' : id
         }
-        console.log(data)
         $.ajax({
-            type: 'POST',
+            type: 'DELETE',
             url: "{{ url_for('main.index') }}",
             dataType: 'json',
             data: JSON.stringify(data),

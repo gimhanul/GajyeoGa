@@ -3,13 +3,13 @@ from . import works
 
 main = Blueprint('main', __name__, url_prefix='/')
 
-@main.route('/', methods=['POST', 'GET'])
+@main.route('/', methods=['DELETE', 'GET'])
 def index():
     boxes = works.dataToLinkedList()
     query = request.args.get('search', '')
 
     
-    if request.method == 'POST':
+    if request.method == 'DELETE':
         data = request.get_json('id')
         works.deleteBoxById(boxes, (int)(data['id']))
 
@@ -28,6 +28,9 @@ def register():
         boxes = works.dataToLinkedList()
         name = request.form['name']
         studentNumber = request.form['studentNumber']
+
+        if name == '' or studentNumber == '':
+            return '값을 입력해 주세요.'
         works.setBox(boxes, name, studentNumber)
 
     return render_template('registerTest.html')
