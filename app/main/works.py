@@ -1,4 +1,4 @@
-import linkedList
+from . import linkedList
 
 def dataToLinkedList():
 
@@ -7,12 +7,21 @@ def dataToLinkedList():
     with open('data.txt', 'r', encoding='UTF-8') as fp:
         data = fp.readlines()
 
-    for one in data[1:]:
+    for one in data:
         one = one.split(',')
         temp = linkedList.Node(one[0], one[1], one[2])
         boxes.append(temp)
         
-    boxes.printAll()
-    #return boxes
+    return boxes
+    
 
-dataToLinkedList()
+def getBoxes(boxes):
+    boxesList = []
+    temp = boxes.head
+
+    while(temp != None):
+        boxesList.append(temp)
+        temp = temp.link
+
+    boxesList.reverse()
+    return boxesList
