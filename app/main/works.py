@@ -9,7 +9,7 @@ def dataToLinkedList():
 
     for one in data:
         one = one.split(',')
-        temp = linkedList.Node(one[0], one[1], one[2], one[3], one[4])
+        temp = linkedList.Node(one[0], one[1], one[2], one[3], boxes.getCount())
         boxes.append(temp)
         
     return boxes

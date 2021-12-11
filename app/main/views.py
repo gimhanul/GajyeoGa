@@ -11,7 +11,6 @@ def index():
     
     if request.method == 'POST':
         data = request.get_json('id')
-        print(data['id'])
         works.deleteBoxById(boxes, (int)(data['id']))
 
 

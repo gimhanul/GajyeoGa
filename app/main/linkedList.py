@@ -52,17 +52,16 @@ class BoxList(object):
             temp = self.head
             preNode = None
 
-            if temp.id == (str)(id):
+            if temp.id == id:
                 self.head = self.head.link
             else:
                 while 1:   
-                    if temp.id == (str)(id):
+                    if temp.id == id:
                         break
                     preNode = temp
                     temp = temp.link
 
                 preNode.link = temp.link
-                print(f'삭제: {temp.id}')
                     
 
 
@@ -78,5 +77,3 @@ class BoxList(object):
 
     def getCount(self):
         return self.count
-
-
