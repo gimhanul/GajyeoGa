@@ -28,13 +28,13 @@
 </body>
 <script>
     function search() {
-    var search = document.getElementById("search").value;
-    window.location.href = "{{ url_for('main.index') }}"+"?search="+search;
+        var search = document.getElementById("search").value;
+        window.location.href = "{{ url_for('main.index') }}"+"?search="+search;
     }
 
     function deleteBox(id) {
-        var data = {
-            'id' : id
+        const data = {
+            id,
         }
         $.ajax({
             type: 'DELETE',
