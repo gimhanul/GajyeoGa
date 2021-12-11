@@ -1,7 +1,7 @@
+from datetime import datetime
 from . import linkedList
 
 def dataToLinkedList():
-
     boxes = linkedList.BoxList()
 
     with open('data.txt', 'r', encoding='UTF-8') as fp:
@@ -14,6 +14,12 @@ def dataToLinkedList():
         
     return boxes
     
+def linkedListToData(boxes):
+    boxes = getBoxes(boxes)
+    with open('data.txt', 'w', encoding='UTF-8') as fp:
+        for box in boxes:
+            data = f'{ box.name }, { box.studentNumber }, { box.date },\n'
+            fp.write(data)
 
 def getBoxes(boxes):
     boxesList = []
@@ -23,7 +29,6 @@ def getBoxes(boxes):
         boxesList.append(temp)
         temp = temp.link
 
-    boxesList.reverse()
     return boxesList
 
 
@@ -37,3 +42,10 @@ def findByStudentNumber(boxes, query):
         temp = temp.link
 
     return boxesList
+
+def setBox(boxes, name, studentNumber):
+    box = linkedList.Node(name, studentNumber, datetime.now())
+    boxes.append(box)
+    linkedListToData(boxes)
+    
+    return
