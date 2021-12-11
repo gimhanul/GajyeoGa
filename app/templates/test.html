@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <title>가져가!!!</title>
 </head>
 <body>
@@ -16,6 +17,10 @@
             <p>{{ box.name }}</p>
             <p>{{ box.studentNumber }}</p>
             <p>{{ box.date }}</p>
+            <p>{{ box.time }}</p>
+            {% if search != '' %}
+            <button onclick="javascript:deleteBox('{{ box.id }}')">삭제</button>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
@@ -24,6 +29,19 @@
     function search() {
     var search = document.getElementById("search").value;
     window.location.href = "{{ url_for('main.index') }}"+"?search="+search;
+    }
+
+    function deleteBox(id) {
+        data = {
+            'id' : id
+        }
+        $.ajax({
+            url: "{{ url_for('main.index') }}",
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+        })
+        window.location.reload()
     }
 </script>
 </html>

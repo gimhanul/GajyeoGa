@@ -5,6 +5,10 @@ main = Blueprint('main', __name__, url_prefix='/')
 
 @main.route('/')
 def index():
+    deleteBox = request.get_json()
+    if deleteBox:
+        works.deleteBoxById(deleteBox['id'])
+
     boxes = works.dataToLinkedList()
     query = request.args.get('search', '')
     if query == '':
@@ -24,14 +28,3 @@ def register():
         works.setBox(boxes, name, studentNumber)
 
     return render_template('registerTest.html')
-
-'''
-def recieve():
-    return
-
-def myBox():
-    myBox = works.findMyBox()
-    context = {
-        'myBox' : myBox,
-    }
-'''

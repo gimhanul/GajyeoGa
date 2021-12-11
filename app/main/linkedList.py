@@ -1,9 +1,12 @@
 class Node(object):
-    def __init__(self, name, studentNumber, date):
+    id = 0
+    def __init__(self, name, studentNumber, date, time):
         self.name = name
         self.studentNumber = studentNumber
         self.date = date
+        self.time = time
         self.link = None
+        self.id += 1
 
 
 class BoxList(object):

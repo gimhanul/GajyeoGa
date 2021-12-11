@@ -9,7 +9,7 @@ def dataToLinkedList():
 
     for one in data:
         one = one.split(',')
-        temp = linkedList.Node(one[0], one[1], one[2])
+        temp = linkedList.Node(one[0], one[1], one[2], one[3])
         boxes.append(temp)
         
     return boxes
@@ -18,7 +18,7 @@ def linkedListToData(boxes):
     boxes = getBoxes(boxes)
     with open('data.txt', 'w', encoding='UTF-8') as fp:
         for box in boxes:
-            data = f'{ box.name }, { box.studentNumber }, { box.date },\n'
+            data = f'{ box.name },{ box.studentNumber },{ box.date },{ box.time },\n'
             fp.write(data)
 
 def getBoxes(boxes):
@@ -44,8 +44,17 @@ def findByStudentNumber(boxes, query):
     return boxesList
 
 def setBox(boxes, name, studentNumber):
-    box = linkedList.Node(name, studentNumber, datetime.now())
+    now = datetime.now()
+    date = now.strftime('%y%m%d')
+    time = now.strftime('%H:%M')
+    box = linkedList.Node(name, studentNumber, date, time)
     boxes.append(box)
     linkedListToData(boxes)
     
+    return
+
+def deleteBoxById(boxes, id):
+    boxes.delete(id)
+    linkedListToData(boxes)
+
     return
