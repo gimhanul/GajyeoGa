@@ -1,4 +1,4 @@
-from DS import linkedList
+import linkedList
 
 def dataToLinkedList():
 

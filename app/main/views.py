@@ -1,6 +1,9 @@
-from linkedList import linkedList
-import works
+from flask import Flask, redirect, render_template, request, url_for, Blueprint
+from . import works
 
+main = Blueprint('main', __name__, url_prefix='/')
+
+@main.route('/')
 def main():
     boxes = works.getboxes()
     context = {
