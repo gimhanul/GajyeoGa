@@ -1,6 +1,9 @@
 from datetime import datetime
-from . import linkedList
+from .domain import linkedList
+from .domain import node
 
+
+#linkedList file 관리
 def dataToLinkedList():
     boxes = linkedList.BoxList()
 
@@ -9,7 +12,7 @@ def dataToLinkedList():
 
     for one in data:
         one = one.split(',')
-        temp = linkedList.Node(one[0], one[1], one[2], one[3], boxes.getCount())
+        temp = node.Node(one[0], one[1], one[2], one[3], boxes.getCount())
         boxes.append(temp)
         
     return boxes
@@ -21,6 +24,8 @@ def linkedListToData(boxes):
             data = f'{ box.name },{ box.studentNumber },{ box.date },{ box.time },{ box.id },\n'
             fp.write(data)
 
+
+#Boxes To List
 def getBoxes(boxes):
     boxesList = []
     temp = boxes.head
@@ -32,6 +37,19 @@ def getBoxes(boxes):
     return boxesList
 
 
+#setBox and append to linkedList
+def setBox(boxes, name, studentNumber):
+    now = datetime.now()
+    date = now.strftime('%y%m%d')
+    time = now.strftime('%H:%M')
+    box = node.Node(name, studentNumber, date, time, boxes.getCount())
+    boxes.append(box)
+    linkedListToData(boxes)
+    
+    return
+
+
+#Search
 def findByStudentNumber(boxes, query):
     boxesList = []
     temp = boxes.head
@@ -43,16 +61,8 @@ def findByStudentNumber(boxes, query):
 
     return boxesList
 
-def setBox(boxes, name, studentNumber):
-    now = datetime.now()
-    date = now.strftime('%y%m%d')
-    time = now.strftime('%H:%M')
-    box = linkedList.Node(name, studentNumber, date, time, boxes.getCount())
-    boxes.append(box)
-    linkedListToData(boxes)
-    
-    return
 
+#Delete Box and linkedList
 def deleteBoxById(boxes, id):
     boxes.delete(id)
     linkedListToData(boxes)

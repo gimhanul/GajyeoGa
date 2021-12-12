@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,7 @@
     <title>가져가!!!</title>
 </head>
 <body>
+    <h1>가져가!!!</h1>
     <button><a href="{{ url_for('main.register') }}">등록</a></button>
     <input id="search" type="text" value="{{ search }}" placeholder="학번을 입력하세요">
     <button type="button" onclick="javascript:search()">검색</button>
@@ -18,7 +19,7 @@
             <p>{{ box.studentNumber }}</p>
             <p>{{ box.date }}</p>
             <p>{{ box.time }}</p>
-            <p>{{ box.id }}</p>
+
             {% if search != '' %}
             <button onclick="javascript:deleteBox('{{ box.id }}')">삭제</button>
             {% endif %}

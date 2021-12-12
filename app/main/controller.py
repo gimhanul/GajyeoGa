@@ -1,36 +1,36 @@
-from flask import Flask, redirect, render_template, request, url_for, Blueprint
-from . import works
+from flask import render_template, request, Blueprint
+from . import linkedListService
 
 main = Blueprint('main', __name__, url_prefix='/')
 
 @main.route('/', methods=['DELETE', 'GET'])
 def index():
-    boxes = works.dataToLinkedList()
+    boxes = linkedListService.dataToLinkedList()
     query = request.args.get('search', '')
 
     
     if request.method == 'DELETE':
         data = request.get_json('id')
-        works.deleteBoxById(boxes, (int)(data['id']))
-
+        linkedListService.deleteBoxById(boxes, (int)(data['id']))
 
     if query == '':
-        that = works.getBoxes(boxes)
+        that = linkedListService.getBoxes(boxes)
         that.reverse()
     else:
-        that = works.findByStudentNumber(boxes, query)
+        that = linkedListService.findByStudentNumber(boxes, query)
     
-    return render_template('test.html', boxes=that, search=query) #최태영거완성되면수정
+    return render_template('index.html', boxes=that, search=query)
+
 
 @main.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        boxes = works.dataToLinkedList()
+        boxes = linkedListService.dataToLinkedList()
         name = request.form['name']
         studentNumber = request.form['studentNumber']
 
         if name == '' or studentNumber == '':
             return '값을 입력해 주세요.'
-        works.setBox(boxes, name, studentNumber)
+        linkedListService.setBox(boxes, name, studentNumber)
 
-    return render_template('registerTest.html')
+    return render_template('register.html')
