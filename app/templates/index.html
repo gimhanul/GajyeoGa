@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
     <title>가져가!!!</title>
 </head>
 <body>
-        <button class="btn2"><a href="{{ url_for('main.register') }}">등록</a></button>
+    <form action="" method="post">
+    <button class="btn2"><a href="{{ url_for('main.register') }}">등록</a></button>
     <h1>택배 조회</h1>
     
     <center>
@@ -17,6 +19,16 @@
         <input id="search" type="text" value="{{ search }}" placeholder="학번을 입력하세요">
         <button class="btn" onclick="javascript:search()">검색</button>
     </div>
+
+    <select name="sort">
+        <option value="time">시간순</option>
+        <option value="studentNumber">학번순</option>
+        <option value="name">이름순</option>
+    </select>
+    <input type="checkbox" name="abc" value="1" id="check"> <!--체크 O = 오름차순, 체크 X = 내림차순-->
+    <input type="hidden" name="abc" value="0" id="checkhidden"> <!--내림차순, 오름차순에 따라 이미지 변경하기 label for 이용하면 될듯-->
+    <button type="submit">적용</button>
+    
     </center>
     <ul>
         {% for box in boxes %}
@@ -32,6 +44,7 @@
         </li>
         {% endfor %}
     </ul>
+    </form>
 </body>
 <script>
     function search() {

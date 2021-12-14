@@ -3,11 +3,16 @@ from . import linkedListService
 
 main = Blueprint('main', __name__, url_prefix='/')
 
-@main.route('/', methods=['DELETE', 'GET'])
+@main.route('/', methods=['DELETE', 'GET', 'POST'])
 def index():
     boxes = linkedListService.dataToLinkedList()
     query = request.args.get('search', '')
 
+    if request.method == 'POST':
+        sort = request.form['sort']
+        abc = request.form['abc']
+        print(sort)
+        print(abc)
     
     if request.method == 'DELETE':
         data = request.get_json('id')
