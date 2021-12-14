@@ -1,6 +1,8 @@
 from datetime import datetime
 from .domain import linkedList
 from .domain import node
+from .util import mergeSort
+from .util import quickSort
 
 
 #linkedList file 관리
@@ -18,7 +20,7 @@ def dataToLinkedList():
     return boxes
     
 def linkedListToData(boxes):
-    boxes = getBoxes(boxes)
+    boxes = getBoxesAsTime(boxes)
     with open('data.txt', 'w', encoding='UTF-8') as fp:
         for box in boxes:
             data = f'{ box.name },{ box.studentNumber },{ box.date },{ box.time },{ box.id },\n'
@@ -26,7 +28,7 @@ def linkedListToData(boxes):
 
 
 #Boxes To List
-def getBoxes(boxes):
+def getBoxesAsTime(boxes):
     boxesList = []
     temp = boxes.head
 
@@ -34,6 +36,16 @@ def getBoxes(boxes):
         boxesList.append(temp)
         temp = temp.link
 
+    return boxesList
+
+def getBoxesAsStudentNumber(boxes):
+    boxesList = getBoxesAsTime(boxes)
+    boxesList = quickSort.quickSort(boxesList)
+    return boxesList
+
+def getBoxesAsName(boxes):
+    boxesList = getBoxesAsTime(boxes)
+    boxesList = mergeSort.mergeSort(boxesList)
     return boxesList
 
 

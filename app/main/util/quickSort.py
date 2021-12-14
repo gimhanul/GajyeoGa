@@ -1,6 +1,6 @@
 def quickSort(list):
     if len(list) <= 1: return list
-    pivot = list[len(list) // 2].studenNumber
+    pivot = list[len(list) // 2].studentNumber
     lessBay, equalBay, bigBay = [], [], []
     for i in list:
         if i.studentNumber < pivot: lessBay.append(i)
