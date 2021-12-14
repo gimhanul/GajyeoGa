@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
     <title>가져가!!!</title>
 </head>
 <body>
     <h1>택배 등록</h1>
-    <button type="button"><a href="{{ url_for('main.index') }}">이전으로</a></button>
     <form action="" method="post">
-        <input type="text" name="name" placeholder="이름">
-        <input type="text" name="studentNumber" placeholder="학번">
-        <input type="submit">
+        <input class="name" name="name" placeholder="이름">
+        <input class="number" name="studentNumber" placeholder="학번"><br>
+        <button class="submit">제출</button>
     </form>
 </body>
 </html>
