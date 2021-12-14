@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <title>가져가!!!</title>
 </head>
 <body>
-    <h1>가져가!!!</h1>
-    <button><a href="{{ url_for('main.register') }}">등록</a></button>
-    <input id="search" type="text" value="{{ search }}" placeholder="학번을 입력하세요">
-    <button type="button" onclick="javascript:search()">검색</button>
+        <button class="btn2"><a href="{{ url_for('main.register') }}">등록</a></button>
+    <h1>택배 조회</h1>
+    
+    <center>
+    <div class="search">
+        <input id="search" type="text" value="{{ search }}" placeholder="학번을 입력하세요">
+        <button class="btn" onclick="javascript:search()">검색</button>
+    </div>
+    </center>
     <ul>
         {% for box in boxes %}
         <li>
-            <p>{{ box.name }}</p>
-            <p>{{ box.studentNumber }}</p>
-            <p>{{ box.date }}</p>
-            <p>{{ box.time }}</p>
+            <div class="classnumber"><p>{{ box.studentNumber }}</p></div>
+            <div class="name1"><p>{{ box.name }}</p></div>
+            <div class="date"></div><p>{{ box.date }}</p></div>
+            <div class="time"></div><p>{{ box.time }}</p></div>
 
             {% if search != '' %}
             <button onclick="javascript:deleteBox('{{ box.id }}')">삭제</button>
