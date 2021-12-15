@@ -1,12 +1,18 @@
-h1{
+h1 {
     text-align: center;
 }
-
 a {
     text-decoration: none;
     text-align: right;
 }
-
+button {
+    border: 0;
+    background-color: transparent;
+}
+#sortImage {
+    width: 40px;
+    height: 40px;
+}
 .btn2{
     color: rgb(0, 0, 0);
     width: 100px;
@@ -31,8 +37,8 @@ a {
     border-radius: 8px;
     border:none;
     outline:none;
+    margin: 15px;
 }
-
 .btn{
         width: 50px;
         height: 100%;
@@ -41,8 +47,7 @@ a {
         outline: none;
         float: right;
         color: #000000;
-} 
-    
+}    
 #search {
     font-size: 16px;
     width: 325px;

@@ -34,7 +34,7 @@ def index():
 
     for i in that:
         print(i.name)
-
+    
     return render_template('index.html', boxes=that, search=query, abc=abc, sort=sort)
 
 

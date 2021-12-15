@@ -8,13 +8,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <title>가져가!!!</title>
 </head>
-<body onload="javascript:set()">
+<body>
     <button class="btn2"><a href="{{ url_for('main.register') }}">등록</a></button>
     <h1><a href="{{ url_for('main.index') }}">가져가!!!</a></h1>
     
     <center>
     <div class="search">
-        <input id="search" type="text" value="{{ search }}" placeholder="학번을 입력하세요">
+        <input id="search" type="text" value="{{ search }}" placeholder="학번을 입력해 택배를 조회하세요">
         <button class="btn" onclick="javascript:search()">검색</button>
     </div>
 
@@ -34,10 +34,10 @@
     <ul>
         {% for box in boxes %}
         <li>
-            <div class="classnumber"><p>{{ box.studentNumber }}</p></div>
-            <div class="name1"><p>{{ box.name }}</p></div>
-            <div class="date"></div><p>{{ box.date }}</p></div>
-            <div class="time"></div><p>{{ box.time }}</p></div>
+            <p>{{ box.studentNumber }}</p>
+            <p>{{ box.name }}</p>
+            <p>{{ box.date }}</p>
+            <p>{{ box.time }}</p>
 
             {% if search != '' %}
             <button onclick="javascript:deleteBox('{{ box.id }}')">삭제</button>
@@ -48,12 +48,13 @@
 
 </body>
 <script>
-    function set() {
+    window.onload = function() {
+        console.log('set 실행됨')
         var sort = document.getElementById("sort");
         var abc = document.getElementById("abc");
 
-        abc.value = "{{ abc }}";
-        sort.value = "{{ sort }}";
+        sort.value = '{{ sort }}';
+        abc.value = '{{ abc }}';
         valueXOR();
     }
     function search() {
