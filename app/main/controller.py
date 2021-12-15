@@ -14,26 +14,23 @@ def index():
         data = request.get_json('sort')
         sort = data['sort']
         abc = data['abc']
+        print(data)
+        that = linkedListService.getSortedBoxes(boxes, sort, abc)
+        
+        for i in that:
+            print(i.name)
+
+        return render_template('index.html', boxes=that, search=query, abc=abc, sort=sort)
+        print("return이 안 되니?시발")
     
     if request.method == 'DELETE':
         data = request.get_json('id')
         linkedListService.deleteBoxById(boxes, (int)(data['id']))
 
     if query == '':
-        if sort == 'studentNumber':
-            that = linkedListService.getBoxesAsStudentNumber(boxes)
-        elif sort == 'name':
-            that = linkedListService.getBoxesAsName(boxes)
-        else:
-            that = linkedListService.getBoxesAsTime(boxes)
-
-        if abc == '1':
-            that.reverse()
+        that = linkedListService.getBoxesAsTime(boxes)
     else:
         that = linkedListService.findByStudentNumber(boxes, query)
-
-    for i in that:
-        print(i.name)
     
     return render_template('index.html', boxes=that, search=query, abc=abc, sort=sort)
 

@@ -28,6 +28,20 @@ def linkedListToData(boxes):
 
 
 #Boxes To List
+def getSortedBoxes(boxes, sort, abc):
+    if sort == 'studentNumber':
+        that = getBoxesAsStudentNumber(boxes)
+    elif sort == 'name':
+        that = getBoxesAsName(boxes)
+    else:
+        that = getBoxesAsTime(boxes)
+
+    if abc == '1':
+        that.reverse()
+    
+    return that
+
+
 def getBoxesAsTime(boxes):
     boxesList = []
     temp = boxes.head

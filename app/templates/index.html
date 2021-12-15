@@ -24,10 +24,9 @@
         <option value="studentNumber">학번순</option>
         <option value="name">이름순</option>
     </select>
-    <button type="button" onclick="javascript:valueXOR()" value="1" id="abc">
-        <img id="sortImage" src="{{ url_for('static', filename='images/narim.png') }}">
+    <button type="button" onclick="javascript:sendSort()" value="" id="abc" name="abc">
+        <img id="sortImage" src="">
     </button>
-    <button onclick="javascript:sendSort()">적용</button>
     {% endif %}
     </center>
 
@@ -45,21 +44,24 @@
         </li>
         {% endfor %}
     </ul>
-
 </body>
 <script>
+    const sort = document.getElementById("sort");
+    const abc = document.getElementById("abc");
+    const image = document.getElementById("sortImage");
+    const searchContent = document.getElementById("search");
+
     window.onload = function() {
         console.log('set 실행됨')
-        var sort = document.getElementById("sort");
-        var abc = document.getElementById("abc");
 
         sort.value = '{{ sort }}';
         abc.value = '{{ abc }}';
-        valueXOR();
+        console.log(sort.value);
+        console.log(abc.value);
+        setSortImage();
     }
     function search() {
-        var search = document.getElementById("search").value;
-        window.location.href = "{{ url_for('main.index') }}"+"?search="+search;
+        window.location.href = "{{ url_for('main.index') }}"+"?search="+searchContent.value;
     }
     function deleteBox(id) {
         const data = {
@@ -77,13 +79,20 @@
 
         window.location.reload()
     }
+    function setSortImage() {
+        if (abc.value == '1') {
+            abc.value = '0';
+            image.src = "{{ url_for('static', filename='images/oreum.png') }}";
+        }
+        else if (abc.value == '0'){
+            abc.value = '1';
+            image.src = "{{ url_for('static', filename='images/narim.png') }}";
+        }
+    }
     function sendSort() {
-        var sort = document.getElementById("sort").value;
-        var abc = document.getElementById("abc").value;
-        
-        var data = {
-            'sort': sort,
-            'abc': abc
+        const data = {
+            'sort': sort.value,
+            'abc': abc.value
         }
 
         $.ajax({
@@ -95,19 +104,7 @@
                 console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         })
-    }
-    function valueXOR() {
-        var image = document.getElementById("sortImage");
-        var abc = document.getElementById("abc");
-
-        if (abc.value == '1') {
-            abc.value = '0';
-            image.src = "{{ url_for('static', filename='images/oreum.png') }}";
-        }
-        else if (abc.value == '0'){
-            abc.value = '1';
-            image.src = "{{ url_for('static', filename='images/narim.png') }}";
-        }
+        
     }
 </script>
 </html>
