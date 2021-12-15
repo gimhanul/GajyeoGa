@@ -7,28 +7,20 @@ main = Blueprint('main', __name__, url_prefix='/')
 def index():
     boxes = linkedListService.dataToLinkedList()
     query = request.args.get('search', '')
-    sort = 'time'
-    abc = '1'
+    sort = request.args.get('sort', '')
+    abc = request.args.get('abc', '')
 
-    if request.method == 'POST':
-        data = request.get_json('sort')
-        sort = data['sort']
-        abc = data['abc']
-        print(data)
-        that = linkedListService.getSortedBoxes(boxes, sort, abc)
-        
-        for i in that:
-            print(i.name)
+    if sort == '':
+        sort = 'time'
+        abc = '0'
 
-        return render_template('index.html', boxes=that, search=query, abc=abc, sort=sort)
-        print("return이 안 되니?시발")
-    
+
     if request.method == 'DELETE':
         data = request.get_json('id')
         linkedListService.deleteBoxById(boxes, (int)(data['id']))
 
     if query == '':
-        that = linkedListService.getBoxesAsTime(boxes)
+        that = linkedListService.getSortedBoxes(boxes, sort, abc)
     else:
         that = linkedListService.findByStudentNumber(boxes, query)
     

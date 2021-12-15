@@ -36,7 +36,7 @@ def getSortedBoxes(boxes, sort, abc):
     else:
         that = getBoxesAsTime(boxes)
 
-    if abc == '1':
+    if abc == '0':
         that.reverse()
     
     return that

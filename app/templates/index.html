@@ -15,7 +15,7 @@
     <center>
     <div class="search">
         <input id="search" type="text" value="{{ search }}" placeholder="학번을 입력해 택배를 조회하세요">
-        <button class="btn" onclick="javascript:search()">검색</button>
+        <button class="btn" onclick="javascript:moveUrl()">검색</button>
     </div>
 
     {% if search == '' %}
@@ -24,9 +24,10 @@
         <option value="studentNumber">학번순</option>
         <option value="name">이름순</option>
     </select>
-    <button type="button" onclick="javascript:sendSort()" value="" id="abc" name="abc">
+    <button type="button" onclick="javascript:setSortImage()" value="" id="abc" name="abc">
         <img id="sortImage" src="">
     </button>
+    <button type="submit" onclick="javascript:moveUrl()">적용</button>
     {% endif %}
     </center>
 
@@ -56,12 +57,16 @@
 
         sort.value = '{{ sort }}';
         abc.value = '{{ abc }}';
-        console.log(sort.value);
-        console.log(abc.value);
-        setSortImage();
+        
+        if (abc.value == '1') {
+            image.src = "{{ url_for('static', filename='images/narim.png') }}";
+        }
+        else if (abc.value == '0'){
+            image.src = "{{ url_for('static', filename='images/oreum.png') }}";
+        }
     }
-    function search() {
-        window.location.href = "{{ url_for('main.index') }}"+"?search="+searchContent.value;
+    function moveUrl() {
+        window.location.href = "{{ url_for('main.index') }}"+"?search="+searchContent.value+"&sort="+sort.value+"&abc="+abc.value;
     }
     function deleteBox(id) {
         const data = {
@@ -88,23 +93,6 @@
             abc.value = '1';
             image.src = "{{ url_for('static', filename='images/narim.png') }}";
         }
-    }
-    function sendSort() {
-        const data = {
-            'sort': sort.value,
-            'abc': abc.value
-        }
-
-        $.ajax({
-            type: 'POST',
-            url: "{{ url_for('main.index') }}",
-            //dataType: 'json',
-            data: JSON.stringify(data),
-            error: function(request,status,error){
-                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            }
-        })
-        
     }
 </script>
 </html>
