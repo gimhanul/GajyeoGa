@@ -1,6 +1,4 @@
 from flask import render_template, request, Blueprint
-
-from app.main.domain import linkedList
 from . import linkedListService
 
 main = Blueprint('main', __name__, url_prefix='/')
@@ -9,12 +7,13 @@ main = Blueprint('main', __name__, url_prefix='/')
 def index():
     boxes = linkedListService.dataToLinkedList()
     query = request.args.get('search', '')
-    sort = ''
-    abc = 0
+    sort = 'time'
+    abc = '1'
 
     if request.method == 'POST':
-        sort = request.form['sort']
-        abc = request.form['abc']
+        data = request.get_json('sort')
+        sort = data['sort']
+        abc = data['abc']
     
     if request.method == 'DELETE':
         data = request.get_json('id')
@@ -27,12 +26,16 @@ def index():
             that = linkedListService.getBoxesAsName(boxes)
         else:
             that = linkedListService.getBoxesAsTime(boxes)
-        if abc == '0':
+
+        if abc == '1':
             that.reverse()
     else:
         that = linkedListService.findByStudentNumber(boxes, query)
-    
-    return render_template('index.html', boxes=that, search=query)
+
+    for i in that:
+        print(i.name)
+
+    return render_template('index.html', boxes=that, search=query, abc=abc, sort=sort)
 
 
 @main.route('/register', methods=['POST', 'GET'])

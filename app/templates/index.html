@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
     <title>가져가!!!</title>
 </head>
-<body>
-    <form action="" method="post">
+<body onload="javascript:set()">
     <button class="btn2"><a href="{{ url_for('main.register') }}">등록</a></button>
-    <h1>택배 조회</h1>
+    <h1><a href="{{ url_for('main.index') }}">가져가!!!</a></h1>
     
     <center>
     <div class="search">
@@ -20,16 +18,19 @@
         <button class="btn" onclick="javascript:search()">검색</button>
     </div>
 
-    <select name="sort">
+    {% if search == '' %}
+    <select id="sort" name="sort">
         <option value="time">시간순</option>
         <option value="studentNumber">학번순</option>
         <option value="name">이름순</option>
     </select>
-    <input type="checkbox" name="abc" value="1" id="check"> <!--체크 O = 오름차순, 체크 X = 내림차순-->
-    <input type="hidden" name="abc" value="0" id="checkhidden"> <!--내림차순, 오름차순에 따라 이미지 변경하기 label for 이용하면 될듯-->
-    <button type="submit">적용</button>
-    
+    <button type="button" onclick="javascript:valueXOR()" value="1" id="abc">
+        <img id="sortImage" src="{{ url_for('static', filename='images/narim.png') }}">
+    </button>
+    <button onclick="javascript:sendSort()">적용</button>
+    {% endif %}
     </center>
+
     <ul>
         {% for box in boxes %}
         <li>
@@ -44,14 +45,21 @@
         </li>
         {% endfor %}
     </ul>
-    </form>
+
 </body>
 <script>
+    function set() {
+        var sort = document.getElementById("sort");
+        var abc = document.getElementById("abc");
+
+        abc.value = "{{ abc }}";
+        sort.value = "{{ sort }}";
+        valueXOR();
+    }
     function search() {
         var search = document.getElementById("search").value;
         window.location.href = "{{ url_for('main.index') }}"+"?search="+search;
     }
-
     function deleteBox(id) {
         const data = {
             id,
@@ -59,7 +67,7 @@
         $.ajax({
             type: 'DELETE',
             url: "{{ url_for('main.index') }}",
-            dataType: 'json',
+            //dataType: 'json',
             data: JSON.stringify(data),
             error: function(request,status,error){
                 console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -67,6 +75,38 @@
         })
 
         window.location.reload()
+    }
+    function sendSort() {
+        var sort = document.getElementById("sort").value;
+        var abc = document.getElementById("abc").value;
+        
+        var data = {
+            'sort': sort,
+            'abc': abc
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ url_for('main.index') }}",
+            //dataType: 'json',
+            data: JSON.stringify(data),
+            error: function(request,status,error){
+                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        })
+    }
+    function valueXOR() {
+        var image = document.getElementById("sortImage");
+        var abc = document.getElementById("abc");
+
+        if (abc.value == '1') {
+            abc.value = '0';
+            image.src = "{{ url_for('static', filename='images/oreum.png') }}";
+        }
+        else if (abc.value == '0'){
+            abc.value = '1';
+            image.src = "{{ url_for('static', filename='images/narim.png') }}";
+        }
     }
 </script>
 </html>
