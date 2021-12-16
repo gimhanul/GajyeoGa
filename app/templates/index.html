@@ -27,24 +27,26 @@
     <button type="button" onclick="javascript:setSortImage()" value="" id="abc" name="abc">
         <img id="sortImage" src="">
     </button>
-    <button type="submit" onclick="javascript:moveUrl()">적용</button>
+    <button class="btn3" onclick="javascript:moveUrl()">적용</button>
     {% endif %}
     </center>
-
+    <div class="list">
     <ul>
         {% for box in boxes %}
+        <center>
         <li>
-            <p>{{ box.studentNumber }}</p>
-            <p>{{ box.name }}</p>
-            <p>{{ box.date }}</p>
-            <p>{{ box.time }}</p>
-
+            <h3 style="display: inline">{{ box.studentNumber }}</h3>
+            <h3 style="display: inline">{{ box.name }}</h3><br>
+            <p style="display: inline">{{ box.date }}</p>
+            <p style="display: inline">{{ box.time }}</p>
             {% if search != '' %}
             <button onclick="javascript:deleteBox('{{ box.id }}')">삭제</button>
             {% endif %}
         </li>
         {% endfor %}
+    </center>
     </ul>
+</div>
 </body>
 <script>
     const sort = document.getElementById("sort");
