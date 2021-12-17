@@ -1,5 +1,12 @@
-h1{
+h1 {
     text-align: center;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+p {
+    margin-bottom: 50px;
 }
 .btn2{
     color: rgb(0, 0, 0);
