@@ -33,9 +33,10 @@ def register():
         boxes = linkedListService.dataToLinkedList()
         name = request.form['name']
         studentNumber = request.form['studentNumber']
+        content = request.form['content']
 
         if name == '' or studentNumber == '':
             return '값을 입력해 주세요.'
-        linkedListService.setBox(boxes, name, studentNumber)
+        linkedListService.setBox(boxes, name, studentNumber, content)
 
     return render_template('register.html')

@@ -14,7 +14,8 @@ def dataToLinkedList():
 
     for one in data:
         one = one.split(',')
-        temp = node.Node(one[0], one[1], one[2], one[3], boxes.getCount())
+        temp = node.Node(boxes.getCount(), one[1], one[2], one[3], one[4], one[5])
+        print(temp)
         boxes.append(temp)
         
     return boxes
@@ -23,7 +24,7 @@ def linkedListToData(boxes):
     boxes = getBoxesAsTime(boxes)
     with open('data.txt', 'w', encoding='UTF-8') as fp:
         for box in boxes:
-            data = f'{ box.name },{ box.studentNumber },{ box.date },{ box.time },{ box.id },\n'
+            data = f'{ box.id },{ box.name },{ box.studentNumber },{ box.content },{ box.date },{ box.time },\n'
             fp.write(data)
 
 
@@ -64,11 +65,11 @@ def getBoxesAsName(boxes):
 
 
 #setBox and append to linkedList
-def setBox(boxes, name, studentNumber):
+def setBox(boxes, name, studentNumber, content):
     now = datetime.now()
     date = now.strftime('%y%m%d')
     time = now.strftime('%H:%M')
-    box = node.Node(name, studentNumber, date, time, boxes.getCount())
+    box = node.Node(boxes.getCount(), name, studentNumber, content, date, time)
     boxes.append(box)
     linkedListToData(boxes)
     
