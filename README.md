@@ -30,3 +30,10 @@
 
 ### ∙∙∙ Result
 > [여기](https://www.youtube.com/watch?v=o6TeAQMxbq8)에서 시연 영상을 확인할 수 있습니다.
+
+### ∙∙∙ People who develop
+
+|github-profile|name|position|roles|
+|---|---|---|---|
+|<a target="_blank" href="https://github.com/gimhanul"><img alt="김한울" src="https://avatars.githubusercontent.com/gimhanul" width="150" /></a>|김한울|backend|✔️ data structure & algorithm 구현<br/>✔️ 택배 조회 및 정렬 기능 구현<br/>✔️ 택배 검색 기능 구현<br/>✔️ 택배 삭제 기능 구현<br/>✔️ 택배 등록 기능 구현|
+|<a target="_blank" href="https://github.com/ty8116"><img alt="최태영" src="https://avatars.githubusercontent.com/ty8116" width="150" /></a>|최태영|frontend|✔️ Main page 구현 <br/>✔️ Register page 구현|
