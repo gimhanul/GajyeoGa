@@ -26,7 +26,7 @@
 ### ∙∙∙ Skills and Tools
 `#flask` `#python` `#html` `#css` `#js`
 
-`#Git` `#GitHub` `VisualStudioCode`
+`#Git` `#GitHub` `#VisualStudioCode`
 
 ### ∙∙∙ Result
 > [여기](https://www.youtube.com/watch?v=o6TeAQMxbq8)에서 시연 영상을 확인할 수 있습니다.
